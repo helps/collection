@@ -18,7 +18,7 @@ class GameCollection
   # 获取游戏列表
   def GameCollection.getGamelist
     url = "http://static.8591.com.tw/min/?g=js-head"
-    open(url, proxy: "http://192.168.1.134:8087") do |data|
+    open(url) do |data|
       html = data.read
       matchedGameStr = /arrGame=\'(.*?)\'/.match(html)
       matchedGameStr[1].split('|').each do |game|
@@ -52,7 +52,7 @@ class GameCollection
     if gserver.nil?
       url = "http://www.8591.com.tw/index.php?firstRow=#{firstRow}&totalRows=300&searchGame=#{gid}&TStatus=8&module=wareList&action=sellList"
     end
-    doc = Nokogiri::HTML(open(url, proxy: "http://192.168.1.134:8087"))
+    doc = Nokogiri::HTML(open(url))
     doc.css('div.NameRight').each do |temp|
       date = temp.css('div.Date')[0].content
       if date == "2天前"
