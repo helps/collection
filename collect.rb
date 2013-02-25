@@ -17,7 +17,7 @@ class GameCollection
   @@gameservers = {}
   @@gameservernames = {}
   # 点数卡 3c拍卖 其他 其他网页游戏
-  OTHER_GAMES = [1890,1817,508,3380]
+  OTHER_GAMES = [1890,1817,508,3380,3013]
   # 获取游戏列表
   def GameCollection.getGamelist
     url = "http://static.8591.com.tw/min/?g=js-head"
