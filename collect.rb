@@ -52,6 +52,7 @@ class GameCollection
     if gserver.nil?
       url = "http://www.8591.com.tw/index.php?firstRow=#{firstRow}&totalRows=300&searchGame=#{gid}&TStatus=8&module=wareList&action=sellList"
     end
+    puts url
     doc = Nokogiri::HTML(open(url))
     doc.css('div.NameRight').each do |temp|
       date = temp.css('div.Date')[0].content
@@ -69,7 +70,7 @@ class GameCollection
       end
     end
     if firstRow < 270 and @nextpage
-      firstRow += 30 
+      firstRow += 30
       c gid, firstRow, gserver, serverindex
     end
   end
