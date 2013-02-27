@@ -44,7 +44,13 @@ class GameCollection
     gservers = @@gameservers[gid]
     if gservers
       gservers.each_with_index do |gserver,index|
-        c gid, 0, gserver, index
+        begin
+          c gid, 0, gserver, index
+        rescue Exception => e
+          f = File.open("log.txt","a")
+          f.puts gid + ":" + e.message
+          f.close
+        end
       end
     else
       c gid
